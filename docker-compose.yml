@@ -1,0 +1,57 @@
+services:
+
+  progress-tracker:
+    build:
+      context: ./progress_tracker
+    container_name: progress-tracker
+    restart: always
+    ports:
+      - "8000:80"
+    env_file:
+      - .env
+    depends_on:
+      langfuse-server:
+        condition: service_started
+      db:
+        condition: service_healthy
+
+  langfuse-server:
+    container_name: langfuse-server
+    image: langfuse/langfuse:2
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "4000:4000"
+    environment:
+      - NEXTAUTH_SECRET=$NEXTAUTH_SECRET
+      - SALT=$SALT
+      - ENCRYPTION_KEY=$ENCRYPTION_KEY
+      - NEXTAUTH_URL=$NEXTAUTH_URL
+      - PORT=$LANGFUSE_PORT
+      - DATABASE_HOST=$DATABASE_HOST
+      - DATABASE_PORT=$DATABASE_PORT
+      - DATABASE_USERNAME=$DATABASE_USERNAME
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - DATABASE_NAME=$LANGFUSE_DATABASE_NAME
+
+  db:
+    container_name: db
+    image: postgres:17.2
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./database_data:/var/lib/postgresql/data
+
+volumes:
+  database_data:

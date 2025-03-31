@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="tab-contents">
+    <div id="manageSessions" class="tab-content active">
+        <div class="section">
+            <h2>Client Management</h2>
+            <form id="createClientForm" onsubmit="handleClientSubmit(event)">
+                <label for="clientName">New Client Name:</label>
+                <input type="text" id="clientName" name="client_name" required>
+                <button type="submit">Create Client</button>
+            </form>
+            
+            <h3>Select Client to Manage Sessions:</h3>
+            <select id="clientSelector" onchange="loadClientSessions(this.value)">
+                <option value="">Select a client...</option>
+                {% for client in clients %}
+                <option value="{{ client.id }}">{{ client.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Session Management</h2>
+            <h3>Upload Session</h3>
+            <form id="uploadSessionForm" onsubmit="handleSessionUpload(event)" enctype="multipart/form-data">
+                <input type="hidden" id="existingClient" name="client_id">
+                <label for="sessionFile">Upload Session:</label>
+                <input type="file" id="sessionFile" name="session_file" accept=".json,.txt" required>
+                <button type="submit">Upload Session</button>
+            </form>
+
+            <h3>Client Sessions</h3>
+            <div class="session-list">
+            </div>
+        </div>
+    </div>
+    <div id="compareProgress" class="tab-content">
+        <h2>Compare Sessions Progress</h2>
+        <form id="compareForm" onsubmit="handleCompareSubmit(event)">
+            <label for="compareClient">Select Client:</label>
+            <select id="compareClient" name="client_id" required onchange="loadSessionsForComparison(this.value)">
+                <option value="">Select a client...</option>
+                {% for client in clients %}
+                <option value="{{ client.id }}">{{ client.name }}</option>
+                {% endfor %}
+            </select>
+
+            <div id="sessionSelections">
+                <label for="session1">First Session:</label>
+                <select id="session1" name="session1_id" required>
+                    <option value="">Select session...</option>
+                </select>
+
+                <label for="session2">Second Session:</label>
+                <select id="session2" name="session2_id" required>
+                    <option value="">Select session...</option>
+                </select>
+            </div>
+
+            <button type="submit">Compare Progress</button>
+        </form>
+        
+        <div class="client-info">
+        </div>
+
+        <div class="progress-summary">
+        </div>
+    </div>
+</div>
+{% endblock %}

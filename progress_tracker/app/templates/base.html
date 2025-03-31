@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mentalyc Therapy Progress Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Mentalyc Therapy Progress Tracker</h1>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="tabs">
+                <button id="manageSessionsTab" class="tab active" onclick="switchTab('manageSessions')">
+                    Manage Sessions
+                </button>
+                <button id="compareProgressTab" class="tab" onclick="switchTab('compareProgress')">
+                    Compare Progress
+                </button>
+            </div>
+            <div class="content-wrapper">
+                {% block page_content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Andreas Sapountzis - Mentalyc Assignment</p>
+        </div>
+    </footer>
+    <script src="/static/scripts.js"></script>
+</body>
+</html>

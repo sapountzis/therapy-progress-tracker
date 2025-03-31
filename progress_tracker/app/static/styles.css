@@ -1,0 +1,333 @@
+:root {
+    --primary-color: #CD1F7E;
+    --primary-hover: #B01B6C;
+    --secondary-color: #4A4458;
+    --background-light: #F8F9FA;
+    --border-color: #E5E7EB;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* Container and layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--text-primary);
+}
+
+main {
+    min-height: calc(100vh - 140px);
+    padding: 32px 0;
+}
+
+.content-wrapper {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    margin-top: 24px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0;
+    gap: 32px;
+}
+
+.tab {
+    padding: 12px 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.tab.active {
+    background-color: transparent;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.tab:hover {
+    color: var(--primary-hover);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Forms and Inputs */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+}
+
+form label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+}
+
+form input[type="text"],
+form input[type="file"] {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    background-color: var(--background-light);
+    border: 1px dashed var(--border-color);
+    padding: 16px;
+    cursor: pointer;
+}
+
+select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+    background-color: white;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+.section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+/* Accordion */
+.accordion-item {
+    border: 1px solid var(--border-color);
+    margin: 8px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 16px 20px;
+    background-color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.accordion-header:hover {
+    background-color: var(--background-light);
+}
+
+.accordion-icon {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: white;
+    border-top: 1px solid var(--border-color);
+}
+
+.accordion-item.active .accordion-header {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+/* Session Summary */
+.session-summary {
+    padding: 24px;
+}
+
+.session-summary h5 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin: 16px 0 8px;
+}
+
+.session-summary li {
+    margin: 8px 0;
+    padding: 12px;
+    background-color: var(--background-light);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.session-summary ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+/* Typography */
+p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0 0 16px 0;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid var(--border-color);
+    padding: 16px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    z-index: 100;
+}
+
+/* Error States */
+.error {
+    color: #DC2626;
+    background-color: #FEE2E2;
+    border: 1px solid #FECACA;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 8px 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .content-wrapper {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .tabs {
+        gap: 16px;
+    }
+
+    .tab {
+        padding: 8px 16px;
+    }
+}
+
+.loading-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 4px;
+    background: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 30%;
+    height: 100%;
+    background: #CD1F7E;
+    border-radius: 2px;
+    animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(400%);
+    }
+}
+
+.error-message {
+    color: #f44336;
+    padding: 10px;
+    border: 1px solid #f44336;
+    border-radius: 4px;
+    margin: 10px 0;
+}
